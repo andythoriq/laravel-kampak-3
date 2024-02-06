@@ -11,11 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mengajars', function (Blueprint $table) {
+        Schema::create('trx_teachings', function (Blueprint $table) {
             $table->id();
-            $table->integer('guru_id');
-            $table->integer('mapel_id');
-            $table->integer('kelas_id');
+            $table->unsignedInteger('teacher_id');
+            $table->foreign('teacher_id')->references('id')->on('m_teachers')->cascadeOnDelete()->cascadeOnUpdate();
+
+            $table->unsignedInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('m_subjects')->cascadeOnDelete()->cascadeOnUpdate();
+
+            $table->unsignedInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('m_classes')->cascadeOnDelete()->cascadeOnUpdate();
+
             $table->timestamps();
         });
     }

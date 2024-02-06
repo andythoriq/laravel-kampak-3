@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('siswas', function (Blueprint $table) {
-            $table->id();
+        Schema::create('m_students', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('nis')->unique();
-            $table->string('nama_siswa');
-            $table->enum('jk',['L','P']);
-            $table->text('alamat');
-            $table->integer('kelas_id');
+            $table->string('name');
+            $table->enum('gender',['L','P']);
+            $table->text('address');
+            $table->unsignedInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('m_classes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('password');
             $table->timestamps();
         });

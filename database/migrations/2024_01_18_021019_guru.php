@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gurus', function (Blueprint $table) {
-            $table->id();
-            $table->string('nip')->unique();
-            $table->string('nama_guru');
-            $table->enum('jk',['L','P']);
-            $table->text('alamat');
+        Schema::create('m_teachers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nip', 16)->unique();
+            $table->string('name', 32);
+            $table->enum('gender',['L','P']);
+            $table->text('address');
             $table->string('password');
             $table->timestamps();
         });
